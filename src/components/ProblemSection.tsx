@@ -1,113 +1,108 @@
 import { motion } from 'framer-motion'
+import { AlertTriangle, TrendingDown, EyeOff, FileX } from 'lucide-react'
 
 const PROBLEMS = [
-  'Se mezcla con otros residuos',
-  'Pierde trazabilidad en el proceso',
-  'No se mide en origen',
-  'No genera evidencia de recuperación',
-  'No activa participación sostenida',
-  'No vuelve eficientemente a la economía circular',
+  { icon: EyeOff, text: 'El PET sale de la vista, pero no del planeta' },
+  { icon: TrendingDown, text: 'Sin medición en origen, no hay evidencia ESG' },
+  { icon: AlertTriangle, text: 'Los reportes de sostenibilidad se basan en estimaciones' },
+  { icon: FileX, text: 'El valor ambiental se pierde sin trazabilidad' },
 ]
 
 export default function ProblemSection() {
   return (
-    <section id="problema" className="bg-[#05070A] py-28 md:py-36 px-4 md:px-8">
+    <section id="problema" className="bg-[#05070A] py-24 md:py-32 px-4 md:px-8">
       <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.8 }}
-        >
-          <span className="section-label">El Problema</span>
-        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-          {/* Left column */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-          >
-            <h2 className="font-instrument text-[clamp(2.5rem,5.5vw,5rem)] text-white leading-[1.0] mb-8">
-              El plástico no
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+          {/* Left: copy */}
+          <div>
+            <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }} transition={{ duration: 0.8 }}>
+              <span className="section-label">El Problema</span>
+            </motion.div>
+
+            <motion.h2 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }} transition={{ duration: 0.8, delay: 0.1 }}
+              className="font-instrument text-[clamp(2.2rem,5vw,4.5rem)] text-white leading-[1.02] mb-8">
+              El plástico no desaparece.
               <br />
-              desaparece.
-              <br />
-              <em className="text-[rgba(255,255,255,0.45)]">Solo sale de</em>
-              <br />
-              <em className="text-[rgba(255,255,255,0.45)]">nuestra vista.</em>
-            </h2>
+              <em className="text-[rgba(255,255,255,0.4)]">Solo sale de nuestra vista.</em>
+            </motion.h2>
 
-            <p className="text-[rgba(255,255,255,0.55)] text-lg leading-relaxed mb-5">
-              El verdadero problema no es solo cuánto plástico generamos, sino que el sistema no logra recuperarlo, medirlo ni devolverlo al ciclo productivo.
-            </p>
+            <div className="space-y-3">
+              {PROBLEMS.map((p, i) => {
+                const Icon = p.icon
+                return (
+                  <motion.div key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.2 + i * 0.08 }}
+                    className="flex items-center gap-4 liquid-glass rounded-2xl px-5 py-4">
+                    <div className="w-8 h-8 rounded-xl bg-[rgba(255,80,60,0.08)] flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-4 h-4 text-[rgba(255,100,70,0.8)]" />
+                    </div>
+                    <span className="text-[rgba(255,255,255,0.7)] text-sm leading-snug">{p.text}</span>
+                  </motion.div>
+                )
+              })}
+            </div>
+          </div>
 
-            <p className="text-[rgba(255,255,255,0.35)] text-base leading-relaxed">
-              Cada día, miles de botellas PET son consumidas en universidades, oficinas, centros comerciales y espacios públicos de Lima. Muchas duran minutos en nuestras manos, pero pueden permanecer décadas fuera del sistema productivo.
-            </p>
-
-            {/* Stat strip */}
-            <div className="mt-10 grid grid-cols-2 gap-4">
-              <div className="liquid-glass rounded-2xl p-5">
-                <div className="font-instrument text-4xl text-[#39FF14] mb-1">8M+</div>
-                <div className="text-[rgba(255,255,255,0.45)] text-xs tracking-wide">toneladas de plástico al océano cada año</div>
-              </div>
-              <div className="liquid-glass rounded-2xl p-5">
-                <div className="font-instrument text-4xl text-[rgba(255,100,60,0.9)] mb-1">&lt;10%</div>
-                <div className="text-[rgba(255,255,255,0.45)] text-xs tracking-wide">del plástico global se recicla efectivamente</div>
+          {/* Right: visual placeholder */}
+          <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }} transition={{ duration: 0.9, delay: 0.15 }}>
+            <div className="liquid-glass rounded-3xl overflow-hidden aspect-[4/3] relative">
+              {/* Dark base */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#0A0A0C] via-[#080D12] to-[#040608]" />
+              {/* Glow */}
+              <div className="absolute inset-0 opacity-20"
+                style={{ backgroundImage: 'radial-gradient(circle at 30% 70%, rgba(255,80,40,0.3) 0%, transparent 60%)' }} />
+              {/* Content */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-8 gap-6">
+                <div className="text-center mb-2">
+                  <div className="text-[rgba(255,255,255,0.15)] text-xs tracking-[0.3em] uppercase mb-4">Sin infraestructura ESG</div>
+                  {/* Waste scatter animation */}
+                  <div className="flex flex-wrap justify-center gap-2 max-w-[220px] mx-auto mb-6">
+                    {Array.from({ length: 30 }).map((_, i) => (
+                      <motion.div key={i}
+                        animate={{ opacity: [0.1, 0.6, 0.1] }}
+                        transition={{ duration: 2 + Math.random() * 2, repeat: Infinity, delay: Math.random() * 2 }}
+                        className="w-2 h-2 rounded-sm"
+                        style={{ backgroundColor: `rgba(255,${60 + Math.floor(Math.random() * 80)},40,0.6)` }} />
+                    ))}
+                  </div>
+                  <div className="font-instrument text-2xl text-[rgba(255,255,255,0.4)] italic">
+                    Data ESG no capturada
+                  </div>
+                </div>
+                {/* Stats */}
+                <div className="flex gap-6">
+                  <div className="text-center">
+                    <div className="font-instrument text-3xl text-[rgba(255,100,60,0.9)]">&lt;10%</div>
+                    <div className="text-[rgba(255,255,255,0.35)] text-xs mt-1">plástico reciclado</div>
+                  </div>
+                  <div className="w-px bg-[rgba(255,255,255,0.06)]" />
+                  <div className="text-center">
+                    <div className="font-instrument text-3xl text-[rgba(255,150,60,0.9)]">8M+</div>
+                    <div className="text-[rgba(255,255,255,0.35)] text-xs mt-1">ton al océano/año</div>
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>
-
-          {/* Right column */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="liquid-glass rounded-3xl p-8"
-            >
-              <p className="text-[rgba(255,255,255,0.35)] text-xs tracking-[0.25em] uppercase mb-7">
-                Sin infraestructura, el PET...
-              </p>
-              <ul className="space-y-4">
-                {PROBLEMS.map((problem, i) => (
-                  <motion.li
-                    key={i}
-                    initial={{ opacity: 0, x: 16 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.35 + i * 0.07 }}
-                    className="flex items-start gap-3.5"
-                  >
-                    <div className="w-1.5 h-1.5 rounded-full bg-[rgba(255,80,60,0.8)] mt-[0.45rem] flex-shrink-0" />
-                    <span className="text-[rgba(255,255,255,0.7)] text-base leading-relaxed">
-                      {problem};
-                    </span>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.8, delay: 0.55 }}
-              className="mt-8 pt-8 border-t border-[rgba(255,255,255,0.05)]"
-            >
-              <p className="text-[rgba(255,255,255,0.55)] text-base leading-relaxed mb-2">
-                El verdadero desperdicio no es solo el plástico.
-              </p>
-              <p className="font-instrument text-xl text-white leading-relaxed italic">
-                Es todo el valor ambiental, social y económico que se pierde cuando no existe un sistema para recuperarlo.
-              </p>
-            </motion.div>
-          </div>
         </div>
+
+        {/* Bottom callout */}
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }} transition={{ duration: 0.7, delay: 0.3 }}
+          className="mt-10 liquid-glass rounded-2xl px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="font-instrument text-lg text-white italic">
+            "El nuevo desperdicio es la data ESG que se pierde."
+          </p>
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#39FF14]" />
+            <span className="text-[#39FF14] text-xs tracking-[0.2em] uppercase">TACHÍN lo resuelve</span>
+          </div>
+        </motion.div>
       </div>
     </section>
   )
